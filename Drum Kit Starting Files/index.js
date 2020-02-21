@@ -1,6 +1,7 @@
 function btnclick(){
   var btnhtml = this.innerHTML;
   makeSound(btnhtml);
+  animationpress(btnhtml);
 }
 
 var btnlength = document.querySelectorAll(".drum").length;
@@ -11,6 +12,7 @@ for(var i =0; i<btnlength; i++){
 
 document.addEventListener("keypress",function(event){
   makeSound(event.key);
+  animationpress(event.key);
 })
 
 function makeSound(key){
@@ -58,4 +60,13 @@ function makeSound(key){
     default:
     console.log("No press");
   }
+}
+
+function animationpress(key){
+  var actbtn = document.querySelector("." + key);
+  actbtn.classList.add("pressed");
+
+  setTimeout(function(){
+    actbtn.classList.remove("pressed");
+  },100);
 }

@@ -1,0 +1,12 @@
+.job-title{
+  border-bottom: 2px dotted black;
+}
+
+.dev-name{
+  color: turquoise;
+}
+
+.contact-details-list{
+  border: 2px solid rebeccapurple;
+  padding: 10px;
+}
