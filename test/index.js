@@ -9,7 +9,10 @@ app.get("/", function(req,res){
 })
 
 app.post("/", function(req,res){
-  var name = req.body.Name;
-  var reg = req.body.req;
-  
+  res.send("Thanks");
+
+})
+
+app.listen(3000, function (req,res) {
+  console.log("Server started at port 3000");
 })

@@ -1,12 +1,25 @@
-.job-title{
-  border-bottom: 2px dotted black;
+body{
+text-align: center;
+}
+.data{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 100px;
+
 }
 
-.dev-name{
-  color: turquoise;
+h2{
+  text-align: center;
+  margin: 20px auto;
 }
 
-.contact-details-list{
-  border: 2px solid rebeccapurple;
-  padding: 10px;
+button{
+  padding: 1rem;
+  margin: 10px auto;
+  border-radius: 2px;
+  border-style: solid;
+  background-color: turquoise;
+  border-color: turquoise;
+  color: white;
+  font-size: 1rem;
 }
