@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
-    <% if(kindOfDay=="Saturday" || kindOfDay=="Sunday"){ %>
-      <h1 style="color:purple">It is a <%= kindOfDay %></h1>
-  <%  } else{   %>
-      <h1 style="color:blue">It is a <%= kindOfDay %></h1>
-  <%  } %>
+
+  <h1><%= kindOfDay %></h1>
+  <ul>
+    <li>Buy</li>
+    <li>Sell</li>
+    <li>Auction</li>
+  </ul>
+
 
   </body>
 </html>
