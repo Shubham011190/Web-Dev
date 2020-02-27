@@ -47,6 +47,9 @@ app.get("/",function(req,res){
   res.render("list",{kindOfDay:dayval});
 })
 
+app.post("/", function(req,res){
+  res.send(req.body.inputval);
+})
 
 app.listen(3000,function(req,res){
   console.log("Server started at port 3000");
