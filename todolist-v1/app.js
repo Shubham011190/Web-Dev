@@ -11,13 +11,31 @@ app.get("/",function(req,res){
   var date = new Date();
   var day = date.getDay();
   var dayval="";
-  if(day==6 || day==7){
-    // res.sendFile(__dirname + "/weekend.html");
-    dayval="Weekend";
-  }
-  else{
-    // res.sendFile(__dirname + "/Weekday.html");
-    dayval="Weekday";
+  switch (day) {
+    case 0:
+      dayval="Sunday";
+      break;
+    case 1:
+      dayval="Monday";
+      break;
+    case 2:
+      dayval="Tuesday";
+      break;
+    case 3:
+      dayval="Wednesday";
+      break;
+    case 4:
+      dayval="Thursday";
+      break;
+    case 5:
+      dayval="Friday";
+      break;
+    case 6:
+      dayval="Saturday";
+      break;
+    default:
+      dayval = day;
+
   }
   res.render("list",{kindOfDay:dayval});
 })
