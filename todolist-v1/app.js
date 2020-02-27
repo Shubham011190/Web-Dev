@@ -2,9 +2,18 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const app = express();
 app.use(bodyparser.urlencoded({extended:true}));
+app.use(express.static("public"));
 
 app.get("/",function(req,res){
-  res.send("Hello");
+  // res.sendFile(__dirname + "/index.html");
+  var date = new Date();
+  var day = date.getDay();
+  if(day==6 || day==7){
+    res.send("<h1>Weekend</h1>");
+  }
+  else{
+    res.send("<h1>Weekday :(</h1>")
+  }
 })
 
 
