@@ -6,6 +6,8 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
+var items = [];
+
 app.get("/",function(req,res){
   // res.sendFile(__dirname + "/index.html");
   var date = new Date();
@@ -44,11 +46,13 @@ app.get("/",function(req,res){
   //
   // }
 
-  res.render("list",{kindOfDay:dayval});
+  res.render("list",{kindOfDay:dayval, listItem : items});
 })
 
 app.post("/", function(req,res){
-  res.send(req.body.inputval);
+  var item = req.body.inputval;
+  items.push(item);
+  res.redirect("/");
 })
 
 app.listen(3000,function(req,res){
