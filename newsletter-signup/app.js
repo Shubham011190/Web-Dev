@@ -12,9 +12,15 @@ app.get("/", function(req,res){
 })
 
 app.post("/", function(req,res){
-  res.send("Thanks");
+  var fname = req.body.firstName;
+  var lname = req.body.lastName;
+  var email = req.body.email_add;
+  console.log("F:" + fname + " L:" + lname+ " E:" + email);
 })
 
 app.listen(3000, function(){
   console.log("Server started at port 3000");
 })
+
+
+// f21111b9d2c21b4733ae716c72dfc743-us4
