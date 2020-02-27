@@ -6,12 +6,12 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
-var items = [];
+let items = [];
 
 app.get("/",function(req,res){
   // res.sendFile(__dirname + "/index.html");
-  var date = new Date();
-  var options = {
+  let date = new Date();
+  let options = {
     weekday:"long",
     day:"numeric",
     month:"long"
@@ -50,7 +50,7 @@ app.get("/",function(req,res){
 })
 
 app.post("/", function(req,res){
-  var item = req.body.inputval;
+  let item = req.body.inputval;
   items.push(item);
   res.redirect("/");
 })

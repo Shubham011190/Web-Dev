@@ -6,24 +6,33 @@
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
+    <div class="box" id="heading">
+      <h1><%= kindOfDay %></h1>
+    </div>
 
-  <h1><%= kindOfDay %></h1>
-  <ul>
-  <% for(var i=0; i<listItem.length;i++){ %>
-    <li><%= listItem[i] %></li>
-  <% } %>
+    <div class="box">
+        <% for(let i=0; i<listItem.length;i++){ %>
+          <div class="item">
+            <input type="checkbox">
+            <p><%= listItem[i] %></p>
+          </div>
+        <% } %>
+
+
 
   <!-- <ul>
     <li>Buy</li>
     <li>Sell</li>
     <li>Auction</li>
   </ul> -->
-  </ul>
-  <form class="" action="/" method="post">
+  <form class="item" action="/" method="post">
     <input type="text" name="inputval" placeholder="Enter the item" required>
-    <button type="submit" name="button">Submit</button>
+    <button type="submit" name="button">+</button>
 
   </form>
+  </div>
 
   </body>
+
+  <footer>Shubham011190 &copy; 2020</footer>
 </html>
