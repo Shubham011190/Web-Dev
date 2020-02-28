@@ -7,6 +7,7 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 let items = [];
+let workItems = [];
 
 app.get("/",function(req,res){
   // res.sendFile(__dirname + "/index.html");
@@ -46,13 +47,31 @@ app.get("/",function(req,res){
   //
   // }
 
-  res.render("list",{kindOfDay:dayval, listItem : items});
+  res.render("list",{title:dayval, listItem : items});
 })
 
 app.post("/", function(req,res){
   let item = req.body.inputval;
-  items.push(item);
-  res.redirect("/");
+  let choice = req.body.buttonVal;
+  console.log(req.body);
+  if(choice == "Work"){
+    workItems.push(item);
+    res.redirect("/work");
+  }
+  else{
+    items.push(item);
+    res.redirect("/");
+  }
+})
+
+app.get("/work", function(req,res){
+  res.render("list",{title:"Work List", listItem : workItems});
+})
+
+app.post("/work", function(req,res){
+  let item = req.body.inputval;
+  workItems.push(item);
+  res.redirect("/work");
 })
 
 app.listen(3000,function(req,res){
