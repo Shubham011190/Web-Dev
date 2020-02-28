@@ -1,6 +1,6 @@
-module.exports = datesend;
-
-function datesend(){
+// module.exports = datesend;
+exports.datesend = datesend;
+ function datesend(){
   let date = new Date();
   let options = {
     weekday:"long",
@@ -11,3 +11,14 @@ function datesend(){
   return dayval;
 
 }
+
+ exports.daysend =daysend;
+  function daysend(){
+   let date = new Date();
+   let options = {
+     weekday:"long"
+   };
+   var dayval = date.toLocaleDateString("en-US",options);
+   return dayval;
+
+ }

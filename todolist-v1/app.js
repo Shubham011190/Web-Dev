@@ -11,8 +11,7 @@ let items = [];
 let workItems = [];
 
 app.get("/",function(req,res){
-  let dayval = dateVal();
-
+  let dayval = dateVal.datesend( );
   res.render("list",{title:dayval, listItem : items});
 })
 
