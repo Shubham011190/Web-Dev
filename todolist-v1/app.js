@@ -1,6 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 const bodyparser = require('body-parser');
+const dateVal = require(__dirname + '/date.js');
 const app = express();
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
@@ -10,42 +11,7 @@ let items = [];
 let workItems = [];
 
 app.get("/",function(req,res){
-  // res.sendFile(__dirname + "/index.html");
-  let date = new Date();
-  let options = {
-    weekday:"long",
-    day:"numeric",
-    month:"long"
-  };
-  var dayval = date.toLocaleDateString("en-US",options);
-  // var day = date.getDay();
-  // var dayval="";
-  // switch (day) {
-  //   case 0:
-  //     dayval="Sunday";
-  //     break;
-  //   case 1:
-  //     dayval="Monday";
-  //     break;
-  //   case 2:
-  //     dayval="Tuesday";
-  //     break;
-  //   case 3:
-  //     dayval="Wednesday";
-  //     break;
-  //   case 4:
-  //     dayval="Thursday";
-  //     break;
-  //   case 5:
-  //     dayval="Friday";
-  //     break;
-  //   case 6:
-  //     dayval="Saturday";
-  //     break;
-  //   default:
-  //     dayval = day;
-  //
-  // }
+  let dayval = dateVal();
 
   res.render("list",{title:dayval, listItem : items});
 })
