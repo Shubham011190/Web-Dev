@@ -53,7 +53,7 @@ app.get("/",function(req,res){
 app.post("/", function(req,res){
   let item = req.body.inputval;
   let choice = req.body.buttonVal;
-  console.log(req.body);
+  // console.log(req.body);
   if(choice == "Work"){
     workItems.push(item);
     res.redirect("/work");
