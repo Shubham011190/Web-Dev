@@ -17,7 +17,8 @@ app.use(express.static("public"));
 var posts = [];
 
 app.get("/", function(req,res){
-  res.render("home",{homecontent : homeStartingContent});
+  res.render("home",{homecontent : homeStartingContent, postsVal: posts});
+  // console.log(posts);
 })
 
 app.get("/contact",function(req,res){
@@ -39,7 +40,6 @@ app.post("/compose",function(req,res){
     bodyPost : req.body.textCompose,
   }
   posts.push(post);
-  console.log(posts);
   res.redirect("/");
 })
 
