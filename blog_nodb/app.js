@@ -55,18 +55,13 @@ app.get('/posts/:postname',function(req,res){
     if(_.lowerCase(item.titlePost) == _.lowerCase(titleName)){
       res.render("post",{postNewTitle:item.titlePost, postNewBody:item.bodyPost})
     }
-    else {
-      {
-        res.render("notfound");
-      }
-    }
+    // else
+    //   {
+    //     res.render("notfound");
+    //   }
   })
 
 })
-
-
-
-
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
