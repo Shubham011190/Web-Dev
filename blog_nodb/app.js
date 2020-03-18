@@ -34,6 +34,10 @@ app.get("/compose",function(req,res){
   res.render("compose");
 })
 
+app.get("/notfound",function(req,res){
+  res.render("notfound");
+})
+
 app.post("/compose",function(req,res){
   let inputval = req.body.textCompose;
   var post = {
@@ -53,7 +57,7 @@ app.get('/posts/:postname',function(req,res){
     }
     else {
       {
-        console.log("Match not found!");
+        res.render("notfound");
       }
     }
   })
