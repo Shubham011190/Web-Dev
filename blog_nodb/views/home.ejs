@@ -4,7 +4,12 @@
 <p><%= homecontent %></p><br>
 <% postsVal.forEach(function(item){ %>
 <h1><%= item.titlePost%></h1>
-<p><%= item.bodyPost %> </p>
+<% if(item.bodyPost.length<=100) %>
+<% { %>
+  <p><%= item.bodyPost %></p>
+  <% }if(item.bodyPost.length>100){ %>
+    <p><%= item.bodyPost.substring(0,20) + "..." %> </p>
+  <% }%>
  <% }) %>
 
 
