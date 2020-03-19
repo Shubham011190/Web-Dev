@@ -21,3 +21,18 @@ const fruit = new Fruit({
 
 //Saving the document to the collection
 fruit.save();
+
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  age: Number
+});
+
+const Person = mongoose.model("Person", personSchema);
+
+const person1 = new Person({
+  name:"Shubham",
+  age:20
+});
+
+person1.save();
