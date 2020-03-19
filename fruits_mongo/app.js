@@ -22,6 +22,28 @@ const fruit = new Fruit({
 //Saving the document to the collection
 fruit.save();
 
+const orange = new Fruit({
+  name:"Orange",
+  rating:8,
+  review: "Mehh"
+});
+
+const banana = new Fruit({
+  name:"Banana",
+  rating:9,
+  review: "Awesome!"
+});
+
+Fruit.insertMany([orange,banana], function(err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    console.log("2 items successfully added to the Fruit model");
+  }
+});
+
+
 
 const personSchema = new mongoose.Schema({
   name: String,
