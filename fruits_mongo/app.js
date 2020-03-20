@@ -66,5 +66,9 @@ Fruit.find(function(err,fruits){
   }
   else {
     console.log(fruits);
+
+  fruits.forEach(function(fruit){
+    console.log(fruit.name);
+  })
   }
 })
