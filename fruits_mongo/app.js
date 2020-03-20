@@ -34,14 +34,14 @@ const banana = new Fruit({
   review: "Awesome!"
 });
 
-Fruit.insertMany([orange,banana], function(err){
-  if(err){
-    console.log(err);
-  }
-  else {
-    console.log("2 items successfully added to the Fruit model");
-  }
-});
+// Fruit.insertMany([orange,banana], function(err){
+//   if(err){
+//     console.log(err);
+//   }
+//   else {
+//     console.log("2 items successfully added to the Fruit model");
+//   }
+// });
 
 
 
@@ -52,9 +52,19 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
-const person1 = new Person({
-  name:"Shubham",
-  age:20
-});
+// const person1 = new Person({
+//   name:"Shubham",
+//   age:20
+// });
 
-person1.save();
+// person1.save();
+
+
+Fruit.find(function(err,fruits){
+  if(err){
+    console.log(err);
+  }
+  else {
+    console.log(fruits);
+  }
+})
