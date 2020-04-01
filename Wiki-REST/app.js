@@ -8,7 +8,7 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
-mongoose.connect("mongodb://localhost:27107/wikiDB",{ useNewUrlParser: true, useUnifiedTopology: true  });
+mongoose.connect("mongodb://localhost:27017/wikiDB",{ useNewUrlParser: true, useUnifiedTopology: true  });
 
 var ArticleSchema = new mongoose.Schema({
   title: String,
@@ -23,7 +23,7 @@ app.get("/",function(req,res){
 })
 
 app.get("/articles",function(req,res){
-  Article.find(function(err,foundArticles){
+  Article.find(function(err, foundArticles){
     console.log(foundArticles);
   });
 });
