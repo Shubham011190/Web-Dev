@@ -24,7 +24,13 @@ app.get("/",function(req,res){
 
 app.get("/articles",function(req,res){
   Article.find(function(err, foundArticles){
-    console.log(foundArticles);
+    // console.log(foundArticles);
+    if(err){
+      res.send(err)
+    }
+    else {
+      res.send(foundArticles);
+    }
   });
 });
 
