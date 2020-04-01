@@ -2,10 +2,17 @@ const mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true ,useUnifiedTopology: true,});
 
-//Creating schema.
+// Creating schema.
 const fruitSchema = new mongoose.Schema({
-  name: String,
-  rating: Number,
+  name:{
+    type: String,
+    required :[true, "Check your input. No name specified!"]
+  },
+  rating:{
+    type: Number,
+    min: 1,
+    max: 10
+  },
   review: String
 });
 
@@ -15,24 +22,24 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 //Adding a document to the collection.
 const fruit = new Fruit({
   name:"Apple",
-  rating:7,
+  rating:8,
   review: "Pretty solid"
 });
 
 //Saving the document to the collection
-fruit.save();
-
-const orange = new Fruit({
-  name:"Orange",
-  rating:8,
-  review: "Mehh"
-});
-
-const banana = new Fruit({
-  name:"Banana",
-  rating:9,
-  review: "Awesome!"
-});
+// fruit.save();
+//
+// const orange = new Fruit({
+//   name:"Orange",
+//   rating:8,
+//   review: "Mehh"
+// });
+//
+// const banana = new Fruit({
+//   name:"Banana",
+//   rating:9,
+//   review: "Awesome!"
+// });
 
 // Fruit.insertMany([orange,banana], function(err){
 //   if(err){
@@ -42,8 +49,6 @@ const banana = new Fruit({
 //     console.log("2 items successfully added to the Fruit model");
 //   }
 // });
-
-
 
 const personSchema = new mongoose.Schema({
   name: String,
@@ -58,8 +63,6 @@ const Person = mongoose.model("Person", personSchema);
 // });
 
 // person1.save();
-
-
 Fruit.find(function(err,fruits){
   if(err){
     console.log(err);
@@ -67,8 +70,12 @@ Fruit.find(function(err,fruits){
   else {
     console.log(fruits);
 
+    //Can use connection.close before the remaining conditions.
+    mongoose.connection.close();
   fruits.forEach(function(fruit){
     console.log(fruit.name);
-  })
+  });
   }
-})
+});
+
+// Fruit.updateOne({_id:})
