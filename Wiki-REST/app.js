@@ -22,6 +22,9 @@ app.get("/",function(req,res){
   res.send("Hello");
 })
 
+//------------------------------------------------------------------------------------------------------------------------
+//------------------------------------ Request functions for all articles-------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
 
 app.route("/articles")
 .get(function(req,res){
@@ -35,6 +38,7 @@ app.route("/articles")
     }
   });
 })
+
 .post(function(req,res){
   console.log(req.body.title);
   console.log(req.body.content);
@@ -52,6 +56,7 @@ app.route("/articles")
     }
   });
 })
+
 .delete(function(req,res){
   Article.deleteMany(function(err){
     if(err){
@@ -63,10 +68,20 @@ app.route("/articles")
   });
 });
 
-// app.get("/articles",);
-// app.post("/articles", );
-// app.delete("/articles", );
-
+//------------------------------------------------------------------------------------------------------------------------
+//---------------------------------Request functions for a specified article----------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
+app.route("/articles/:articleTitle")
+.get(function(req,res){
+  Article.findOne({title:req.params.articleTitle},function(err,foundArticle){
+    if(err){
+      res.send(err);
+    }
+    else {
+      res.send(foundArticle)
+    }
+  })
+}).post().delete();
 app.listen(3000, function(){
   console.log("Server started at port 3000");
 })
