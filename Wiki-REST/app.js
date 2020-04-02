@@ -42,7 +42,14 @@ app.post("/articles", function(req,res){
     title: req.body.title,
     content: req.body.content
   });
-  newArticle.save();
+  newArticle.save(function(err){
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.send("Successfully added in DB");
+    }
+  });
 });
 
 app.listen(3000, function(){
