@@ -22,7 +22,9 @@ app.get("/",function(req,res){
   res.send("Hello");
 })
 
-app.get("/articles",function(req,res){
+
+app.route("/articles")
+.get(function(req,res){
   Article.find(function(err, foundArticles){
     // console.log(foundArticles);
     if(err){
@@ -32,9 +34,8 @@ app.get("/articles",function(req,res){
       res.send(foundArticles);
     }
   });
-});
-
-app.post("/articles", function(req,res){
+})
+.post(function(req,res){
   console.log(req.body.title);
   console.log(req.body.content);
 
@@ -50,9 +51,8 @@ app.post("/articles", function(req,res){
       res.send("Successfully added in DB");
     }
   });
-});
-
-app.delete("/articles", function(req,res){
+})
+.delete(function(req,res){
   Article.deleteMany(function(err){
     if(err){
       res.send(err)
@@ -62,6 +62,10 @@ app.delete("/articles", function(req,res){
     }
   });
 });
+
+// app.get("/articles",);
+// app.post("/articles", );
+// app.delete("/articles", );
 
 app.listen(3000, function(){
   console.log("Server started at port 3000");
