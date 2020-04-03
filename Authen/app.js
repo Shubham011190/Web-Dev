@@ -16,9 +16,10 @@ const userSchema = new mongoose.Schema({
   email : String,
   password : String
 });
+// console.log(process.env.SECRET);      Used from .env(hidden file)
 
-const secret = "Mysecret1."
-userSchema.plugin(encrypt,{secret:secret, encryptedFields :['password']});
+// const secret = "Mysecret1."
+userSchema.plugin(encrypt,{secret:process.env.SECRET, encryptedFields :['password']});
 
 const User = new mongoose.model("User",userSchema);
 
