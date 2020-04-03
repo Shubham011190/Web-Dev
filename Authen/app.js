@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   email : String,
   password : String
 });
-// console.log(process.env.SECRET);      Used from .env(hidden file)
+// console.log(process.env.SECRET);
 
 // const secret = "Mysecret1."
 userSchema.plugin(encrypt,{secret:process.env.SECRET, encryptedFields :['password']});
