@@ -113,7 +113,19 @@ app.route("/articles/:articleTitle")
     }
   )
 })
-.post().delete();
+.delete(function(req,res){
+  Article.deleteOne(
+    {title: req.params.articleTitle},
+    function(err){
+      if(err){
+        res.send(err)
+      }
+      else {
+        res.send("Article deleted successfully")
+      }
+    }
+  )
+});
 
 app.listen(3000, function(){
   console.log("Server started at port 3000");
