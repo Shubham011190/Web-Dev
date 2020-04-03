@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
 
 const User = new mongoose.model("User",userSchema);
 
+
 app.get("/", function(req, res) {
     res.render("home")
 });
@@ -29,6 +30,7 @@ app.get("/register", function(req, res) {
     res.render("register")
 });
 
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------POST functions--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 app.post("/register", function(req,res){
   const newUser = new User({
@@ -40,11 +42,29 @@ app.post("/register", function(req,res){
       res.send(err);
     }
     else {
-      res.send("secrets");
+      res.render("secrets");
     }
   })
 
 })
+
+app.post("/login",function(req,res){
+  const username = req.body.username;
+  const password = req.body.password;
+  User.findOne({email: username},function(err,foundUser){
+    if(err){
+      res.send(err)
+    }
+    else {
+      if(foundUser.password == password){
+        res.render("secrets");
+      }
+    }
+  })
+});
+
+
+
 
 app.listen(3000, function() {
     console.log("Server started at 3000");
