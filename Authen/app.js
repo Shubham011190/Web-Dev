@@ -42,16 +42,13 @@ app.get("/register", function(req, res) {
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------POST functions--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 app.post("/register", function(req, res) {
-    bcrypt.hash {
-        req.body.password, saltRounds,
-            function(err, hash) {
-                const newUser = new User({
-                    email: req.body.username,
-                    password: hash
-                });
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        const newUser = new User({
+            email: req.body.username,
+            password: hash
+        });
 
-            }
-    }
+    })
     newUser.save(function(err) {
         if (err) {
             res.send(err);
