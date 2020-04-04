@@ -5,6 +5,7 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 const md5 = require("md5");
+const bcrypt = require('bcrypt');
 // const encrypt = require('mongoose-encryption');
 
 app.use(express.static("public"));
