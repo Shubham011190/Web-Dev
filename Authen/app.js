@@ -47,15 +47,16 @@ app.post("/register", function(req, res) {
             email: req.body.username,
             password: hash
         });
+        newUser.save(function(err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.render("secrets");
+            }
+        })
 
     })
-    newUser.save(function(err) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.render("secrets");
-        }
-    })
+
 
 })
 
@@ -66,11 +67,16 @@ app.post("/login", function(req, res) {
         if (err) {
             res.send(err)
         } else {
-            if (foundUser.password == password) {
-                res.render("secrets");
+            if (foundUser) {
+                bcrypt.compare(password, foundUser.password, function(err, result) {
+                    if (result == true) {
+                        res.render("secrets");
+                    }
+                });
+
             }
         }
-    })
+    });
 });
 
 
