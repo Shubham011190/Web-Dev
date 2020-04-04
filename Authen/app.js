@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const app = express();
 const md5 = require("md5");
 const bcrypt = require('bcrypt');
+
+const saltRounds = 15;
 // const encrypt = require('mongoose-encryption');
 
 app.use(express.static("public"));
@@ -40,10 +42,16 @@ app.get("/register", function(req, res) {
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------POST functions--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 app.post("/register", function(req, res) {
-    const newUser = new User({
-        email: req.body.username,
-        password: md5(req.body.password)
-    });
+    bcrypt.hash {
+        req.body.password, saltRounds,
+            function(err, hash) {
+                const newUser = new User({
+                    email: req.body.username,
+                    password: hash
+                });
+
+            }
+    }
     newUser.save(function(err) {
         if (err) {
             res.send(err);
