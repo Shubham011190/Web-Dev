@@ -66,6 +66,11 @@ app.get("/secrets", function(req, res) {
     }
 })
 
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect('/');
+})
+
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------POST functions--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 app.post("/register", function(req, res) {
@@ -98,6 +103,20 @@ app.post("/register", function(req, res) {
 })
 
 app.post("/login", function(req, res) {
+    const newuser = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
+    req.login(newuser, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            passport.authenticate('local')(req, res, function() {
+                res.redirect('/secrets');
+            })
+        }
+    })
+
     // const username = req.body.username;
     // const password = req.body.password;
     // User.findOne({ email: username }, function(err, foundUser) {
