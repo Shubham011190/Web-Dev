@@ -46,12 +46,18 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser()); //All 3 used through passport-local-mongoose
 passport.deserializeUser(User.deserializeUser());
 
-passport.use(new GoogleStrategy {
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENTSECRET,
-    callbackURL: "http://localhost:3000/auth/google/Secrets"
-
-})
+passport.use(new GoogleStrategy({
+        clientID: process.env.CLEINT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/google/Secrets",
+        userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+    },
+    function(accessToken, refreshToken, profile, cb) {
+        User.findOrCreate({ googleID: profile.id }, function(err, user) {
+            return cb(err, user);
+        });
+    }
+));
 
 
 app.get("/", function(req, res) {
