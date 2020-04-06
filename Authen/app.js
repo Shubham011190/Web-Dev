@@ -7,6 +7,7 @@ const app = express();
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const md5 = require("md5");
 // const bcrypt = require('bcrypt');
 
@@ -44,6 +45,13 @@ const User = new mongoose.model("User", userSchema);
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser()); //All 3 used through passport-local-mongoose
 passport.deserializeUser(User.deserializeUser());
+
+passport.use(new GoogleStrategy {
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENTSECRET,
+    callbackURL: "http://localhost:3000/auth/google/Secrets"
+
+})
 
 
 app.get("/", function(req, res) {
