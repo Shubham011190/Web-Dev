@@ -163,6 +163,19 @@ app.post("/login", function(req, res) {
     app.post("/submit", function(req, res) {
             const submittedSecret = req.body.secret;
             console.log(req.user.id);
+            User.findById(req.user.id, function(err, foundUser) {
+                if (err) {
+                    console.log(err);
+                    else {
+                        if (foundUser) {
+                            foundUser.secret = submittedSecret;
+                            foundUser.save(function() {
+                                res.redirect("/secrets");
+                            })
+                        }
+                    }
+                }
+            })
 
         })
         // const username = req.body.username;
