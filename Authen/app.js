@@ -44,10 +44,15 @@ userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser()); //All 3 used through passport-local-mongoose
-passport.deserializeUser(User.deserializeUser());
-
+passport.use(User.createStrategy()); //All 3 used through passport-local-mongoose
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
@@ -55,6 +60,7 @@ passport.use(new GoogleStrategy({
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
     },
     function(accessToken, refreshToken, profile, cb) {
+        console.log(profile);
         User.findOrCreate({ googleID: profile.id }, function(err, user) {
             return cb(err, user);
         });
@@ -65,6 +71,17 @@ passport.use(new GoogleStrategy({
 app.get("/", function(req, res) {
     res.render("home")
 });
+
+app.get("/auth/google",
+    passport.authenticate('google', { scope: ['profile'] })
+);
+
+app.get("/auth/google/secrets",
+    passport.authenticate('google', { failureRedirect: "/login" }),
+    function(req, res) {
+        //On successful authentication, send to /secrets page.
+        res.redirect("/secrets");
+    })
 
 app.get("/login", function(req, res) {
     res.render("login")

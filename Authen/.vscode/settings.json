@@ -4,5 +4,6 @@
         "CLIENTSECRET",
         "findorcreate",
         "newuser"
-    ]
+    ],
+    "python.pythonPath": "C:\\Users\\ROG\\Anaconda2\\python.exe"
 }
