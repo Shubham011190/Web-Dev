@@ -33,7 +33,8 @@ mongoose.set("useCreateIndex", true);
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
-    googleId: String
+    googleId: String,
+    secret: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -83,6 +84,14 @@ app.get("/auth/google/secrets",
         //On successful authentication, send to /secrets page.
         res.redirect("/secrets");
     })
+
+app.get("/submit", function(req, res) {
+    if (req.isAuthenticated()) {
+        res.render("submit");
+    } else {
+        res.redirect("/login");
+    }
+})
 
 app.get("/login", function(req, res) {
     res.render("login")
@@ -151,22 +160,27 @@ app.post("/login", function(req, res) {
         }
     })
 
-    // const username = req.body.username;
-    // const password = req.body.password;
-    // User.findOne({ email: username }, function(err, foundUser) {
-    //     if (err) {
-    //         res.send(err)
-    //     } else {
-    //         if (foundUser) {
-    //             bcrypt.compare(password, foundUser.password, function(err, result) {
-    //                 if (result == true) {
-    //                     res.render("secrets");
-    //                 } else {
-    //                     res.send("Wrong password.");
-    //                     console.log(password);
-    //                     console.log(foundUser.password);
-    //                 }
-    //             });
+    app.post("/submit", function(req, res) {
+            const submittedSecret = req.body.secret;
+            console.log(req.user.id);
+
+        })
+        // const username = req.body.username;
+        // const password = req.body.password;
+        // User.findOne({ email: username }, function(err, foundUser) {
+        //     if (err) {
+        //         res.send(err)
+        //     } else {
+        //         if (foundUser) {
+        //             bcrypt.compare(password, foundUser.password, function(err, result) {
+        //                 if (result == true) {
+        //                     res.render("secrets");
+        //                 } else {
+        //                     res.send("Wrong password.");
+        //                     console.log(password);
+        //                     console.log(foundUser.password);
+        //                 }
+        //             });
 
     //         }
     //     }
