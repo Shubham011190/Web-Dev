@@ -92,3 +92,5 @@ employeeRouter.put('/:id', (req, res) => {
         }
     });
 });
+
+module.exports = employeeRouter;
