@@ -12,7 +12,7 @@ employeeRouter.get('/', (req, res) => {
         if (err) {
             res.status(500).json({
                 message: {
-                    msgBody: "Unable to get Employess",
+                    msgBody: "Unable to get Employees",
                     msgError: true
                 }
             });
@@ -22,3 +22,27 @@ employeeRouter.get('/', (req, res) => {
         }
     });
 })
+
+//Create
+
+employeeRouter.post('/', (req, res) => {
+    const employee = new Employee(req.body);
+    employee.save((err, documents) => {
+       if (err) {
+            res.status(500).json({
+                message: {
+                    msgBody: "Unable to save Employee data",
+                    msgError: true
+                }
+            });
+        }
+        else {
+           res.status(200).json({
+               message: {
+                   msgBody: "Successfully saved data.",
+                   msgError: false
+               }
+           });
+        }
+    });
+});
