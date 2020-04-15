@@ -46,3 +46,26 @@ employeeRouter.post('/', (req, res) => {
         }
     });
 });
+
+//Delete
+
+employeeRouter.delete('/:id', (req, res) => {
+    Employee.findByIdAndDelete(req.params.id, (err) => {
+        if (err) {
+            res.status(500).json({
+                message: {
+                    msgBody: "Unable to delete employee",
+                    msgError: true
+                }
+            });
+        }
+        else {
+            res.status(200).json({
+                message: {
+                    msgBody: "Employee deleted successfully",
+                    msgError: false
+                }
+            });
+        }
+    })
+})
