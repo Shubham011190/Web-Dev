@@ -69,3 +69,26 @@ employeeRouter.delete('/:id', (req, res) => {
         }
     })
 })
+
+//Update
+
+employeeRouter.put('/:id', (req, res) => {
+    Employee.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true }, (err, response) => {
+        if (err) {
+            res.status(500).json({
+                message: {
+                    msgBody: "Unable to update employee",
+                    msgError: true
+                }
+            });
+        }
+        else {
+            res.status(200).json({
+                message: {
+                    msgBody: "Employee updated successfully",
+                    msgError: false
+                }
+            });
+        }
+    });
+});
