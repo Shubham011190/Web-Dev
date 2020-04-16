@@ -1,4 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 function CreateExercise(props) {
     const [username, setUsername] = useState("");
@@ -36,14 +38,41 @@ function CreateExercise(props) {
     useEffect(() => {
         setUsers(['test user']);
         setUsername('testUser');   
-    })
-
-
+    }, [])
     
+    const userInput = useRef("userInput");
+
 
     return(
-        <div>
-            <p>You are in Create Exercise Component</p>
+        <div className = "container">
+            <h3>Create New Exercise Log</h3>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label>Username :</label>
+                    <select ref={userInput} required className="form-control" value={username} onChange={onChangeUsername}>
+                        {users.map((user) => {
+                            return <option key={user} value={user}>{user}</option>
+                        })}
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Description :</label>
+                    <input type="text" required className="form-control" value={description} onChange={onChangeDescription} />
+                </div>
+                <div className="form-group">
+                    <label>Duration(in minutes) :</label>
+                    <input type="text" required className="form-control" value={duration} onChange ={onChangeDuration} />
+                </div>
+                <div className="form-group">
+                    <label>Date :</label>
+                    <div>
+                        <DatePicker selected={date} onChange={onChangeDate} />
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
         </div>
     )
 }
