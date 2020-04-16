@@ -1,9 +1,16 @@
 import React from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom'
+
 function App() {
   return (
-    <div className="container" >
-      Hello World!
-    </div>
+    <Router>
+      <Navbar />
+      <br />
+      <Route path='/' exact component={ExercisesList} />
+      <Route path='/edit/:id' exact component={EditExercise} />
+      <Route path='/create' exact component={CreateExercise} />
+      <Route path='/user' exact component={CreateUser} />
+    </Router>
   );
 }
 
