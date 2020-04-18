@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
+import './Chat.css'
 
 let socket;
 
@@ -28,8 +29,8 @@ const Chat = ({ location }) => {
     }, [ENDPOINT, location.search]);
 
     useEffect(() => {
-        socket.on('message', (message) => {
-            setMessages(...messages, message)
+        socket.on('message', message => {
+            setMessages(messages => [...messages, message])
         })
     }, [messages]);
 
