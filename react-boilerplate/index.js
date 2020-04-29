@@ -32,6 +32,37 @@ app.post('/api/users/register', (req, res) => {
    
 });
 
+app.post('/api/users/login', (req, res) => {
+
+    //Find User
+
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (!user) {
+            return res.json({
+                success: false,
+                message: "Authorization failed. User not found."
+            });
+        }
+
+        //Check password
+
+        user.comparePassword(req.body.password, (err, isMatch) => {
+            if (!isMatch) {
+                return res.json({
+                    loginSuccess: false,
+                    message: "Login failed. Wrong password.",
+                });
+            }
+        })
+
+        user.generateToken((err, token) => {
+            
+        })
+
+
+    })
+})
+
 app.listen(3000, () => {
     console.log("Server started at port 3000");
 });

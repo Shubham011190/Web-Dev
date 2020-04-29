@@ -52,5 +52,16 @@ userSchema.pre('save', function (next) {            //'pre' implies do the funct
     }
 });
 
+userSchema.methods.comparePassword = function (plainpassword, cb) {
+    bcrypt.compare(plainpassword, this.password, (err, isMatch) => {
+        if (err) return cb(err);
+        cb(null, isMatch)
+    });
+}
+
+userSchema.methods.generateToken = function (cb) {
+    
+}
+
 const User = mongoose.model('User', userSchema);
 module.exports = { User };  
