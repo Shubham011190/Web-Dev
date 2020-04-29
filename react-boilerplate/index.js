@@ -61,7 +61,7 @@ app.post('/api/users/login', (req, res) => {
             res.cookie('x_auth', user.token)
                 .status(200)
                 .json({
-                    loginSuccess: true;
+                    loginSuccess: true
                 })
         })
 
