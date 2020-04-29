@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const saltRounds = 15;
+const jwt = require('jsonwebtoken');
 
 const userSchema = new Schema({
     name: {
@@ -60,7 +61,12 @@ userSchema.methods.comparePassword = function (plainpassword, cb) {
 }
 
 userSchema.methods.generateToken = function (cb) {
-    
+    jwt.sign(user._id.toHexString(), 'secret');
+    user.token = token;
+    user.save((err, user) => {
+        if (err) return cb(err);
+        cb(null, user);
+    });
 }
 
 const User = mongoose.model('User', userSchema);

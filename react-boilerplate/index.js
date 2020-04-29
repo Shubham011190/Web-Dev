@@ -56,12 +56,17 @@ app.post('/api/users/login', (req, res) => {
         })
 
         user.generateToken((err, token) => {
+            if (err) return res.status(400).send(err);
             
+            res.cookie('x_auth', user.token)
+                .status(200)
+                .json({
+                    loginSuccess: true;
+                })
         })
 
-
     })
-})
+});
 
 app.listen(3000, () => {
     console.log("Server started at port 3000");
