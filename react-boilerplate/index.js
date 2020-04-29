@@ -24,11 +24,13 @@ app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
     user.save((err, userData) => {
         if (err) return res.json({ success: false, err });
-    })
-    return res.status(200).json({
-        success: true
+        return res.status(200).json({
+            success: true,
+            userData: userData,
+        });
     });
-})
+   
+});
 
 app.listen(3000, () => {
     console.log("Server started at port 3000");
