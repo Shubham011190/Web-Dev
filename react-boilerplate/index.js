@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { User } = require('./model/user');
+const config = require('./config/key');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+mongoose.set('useCreateIndex', true);
 
-mongoose.connect("mongodb+srv://Shubham011190:Imshubham1619@react-blog-ahaea.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Successfully connected to DB"))
     .catch(err => console.log(err));
 
