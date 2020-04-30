@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { User } = require('./model/user');
 const config = require('./config/key');
+const { auth } = require('./middleware/auth');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,6 +66,18 @@ app.post('/api/users/login', (req, res) => {
                 })
         })
 
+    })
+});
+
+
+app.get('/api/users/auth', auth, (req, res) => {
+    res.status(200).json({
+        _id: req._id,
+        isAuth: true,
+        email: req.user.email,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
     })
 });
 
