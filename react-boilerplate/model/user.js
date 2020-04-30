@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const saltRounds = 15;
+const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
 const userSchema = new Schema({
@@ -45,6 +45,7 @@ userSchema.pre('save', function (next) {            //'pre' implies do the funct
             bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err);
                 user.password = hash;
+                next();
             })
         })
     }
