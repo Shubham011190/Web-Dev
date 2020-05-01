@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Users from './user/pages/Users';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>Let's Start!</h1>
-    </div>
+    <Router>
+      <Route path='/'>
+        <Users />
+      </Route>
+    </Router>
   );
 }
 
