@@ -6,7 +6,7 @@ const UserItem = props => {
         <li className='users-item'>
             <div className='user-item__content'>
                 <div className='user-item__image'>
-                    <img src={props.img} alt={props.name} />
+                    <img src={props.image} alt={props.name} />
                 </div>
                 <div className='user-item__info'>
                     <h2>{props.name}</h2>

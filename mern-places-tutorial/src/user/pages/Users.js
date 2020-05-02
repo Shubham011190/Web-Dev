@@ -2,12 +2,14 @@ import React from 'react';
 import UsersList from '../components/UsersList';
 
 const Users = () => {
-    const USERS = [{
+    const USERS = [
+        {
         id: 1,
         name: "Shubham",
-        image: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+        image: 'https://media3.s-nbcnews.com/j/newscms/2019_41/3047866/191010-japan-stalker-mc-1121_06b4c20bbf96a51dc8663f334404a899.fit-760w.JPG',
         places: 3
-    }];
+        }
+    ];
     return (
         <UsersList items={USERS}/>
     )
