@@ -1,3 +1,8 @@
+function toggle() {
+    var newsletter = document.querySelector('.newsletter');
+    newsletter.classList.toggle('active');
+}
+
 var countDate = new Date('Jan 1, 2021 00:00:00').getTime();
 function newYear() {
     var now = new Date().getTime();
