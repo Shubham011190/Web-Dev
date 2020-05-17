@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    padding: 10px;
+}
+
+header p{
+    float: right;
+}
+.mainBar{
+    margin-top: 20px;
+}
+
+ul{
+    background-color: cornsilk;
+}
+
+ul li{
+    display:inline-flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: black;
+}
