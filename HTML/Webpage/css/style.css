@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 header{
@@ -9,6 +11,11 @@ header{
 
 header p{
     float: right;
+}
+
+header h1{
+    position: relative;
+    top: 20px;
 }
 .mainBar{
     margin-top: 20px;
@@ -36,6 +43,7 @@ header p{
     background-color: antiquewhite;
     top: 42px;
     display: none;
+    box-shadow: 5px 5px 8px #888888;
 }
 
 .subMenu li{
