@@ -409,4 +409,49 @@ li{
     background-color: #313534;
 }
 
+.contact{
+    background-color: #221e3f;
+}
 
+form{
+    width: 70%;
+    margin: 0 auto;
+}
+form label{
+    font-size: 1.5rem;
+}
+
+input,
+textarea,
+select{
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 5px;
+    border: none;
+    outline-color: #fd57bf;
+}
+
+
+input[type='submit']{
+    color: #eee;
+    background-color: #fd57bf;
+    padding: 1rem 2rem;
+    width: initial;
+    border-radius: 0.8rem;
+    transition: background-color 650ms;
+    cursor: pointer;
+
+}
+
+input[type='submit']:hover{
+    color: #221e3f;
+    background-color: #ffe838;
+}
+
+.copyright{
+    width: 100%;
+    text-align: center;
+    background-color: #16162d;
+    padding: 2rem 0 ;
+    position: relative;
+}
