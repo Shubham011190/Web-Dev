@@ -58,6 +58,57 @@ header{
     align-items: center;
 }
 
+.container{
+    width: 90%;
+    max-width:120rem;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-heading{
+    margin-top: 10rem;
+    text-align: center;
+}
+
+.section-heading h1{
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    font-weight: 300;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.section-heading h6{
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+.section-heading h1::before,
+.section-heading h1::after{
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left:50%;
+    transform: translate(-50%);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.section-heading h1::before{
+    width:10rem;
+    height: 3px;
+    border-radius: 0.8rem;
+}
+
+.section-heading h1::after{
+    width:1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    bottom: -1.1rem;
+}
+
+
 li{
     margin: 0 2rem;
 }
@@ -204,4 +255,8 @@ li{
 }
 .fa-github-square:hover{
     color: #24292e;
+}
+
+.my-skills{
+    margin-top: 10rem;
 }
