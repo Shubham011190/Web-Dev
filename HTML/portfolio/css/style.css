@@ -186,3 +186,22 @@ li{
 .about-details{
     flex: 1;
 }
+
+.social-media{
+    margin-top: 5rem;
+}
+
+.social-media i{
+    font-size: 5rem;
+    transition: 650ms color;
+}
+
+.fa-facebook-square:hover{
+    color: #3d5b99;
+}
+.fa-twitter-square:hover{
+    color: #7ebadd;
+}
+.fa-github-square:hover{
+    color: #24292e;
+}
